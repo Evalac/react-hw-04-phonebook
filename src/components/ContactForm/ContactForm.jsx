@@ -1,3 +1,4 @@
+import css from './ContactForm.module.css';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 
@@ -23,10 +24,11 @@ function ContactForm({ addNewContact, initialValue }) {
   };
 
   return (
-    <form onSubmit={submitForm}>
-      <label htmlFor="name">
+    <form className={css.formNewContact} onSubmit={submitForm}>
+      <label className={css.labelNewContact} htmlFor="name">
         Name
         <input
+          className={css.inputNewContact}
           onChange={e => {
             setConatctName(e.target.value);
           }}
@@ -39,9 +41,10 @@ function ContactForm({ addNewContact, initialValue }) {
           required
         />
       </label>
-      <label htmlFor="number">
+      <label className={css.labelNewContact} htmlFor="number">
         Number
         <input
+          className={css.inputNewContact}
           onChange={e => {
             setContactNumber(e.target.value);
           }}
@@ -54,7 +57,9 @@ function ContactForm({ addNewContact, initialValue }) {
           required
         />
       </label>
-      <button type="submit">Add contact</button>
+      <button className={css.buttonNewContact} type="submit">
+        Add contact
+      </button>
     </form>
   );
 }

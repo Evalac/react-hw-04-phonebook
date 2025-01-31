@@ -39,7 +39,7 @@ export const App = () => {
   );
 
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       <ContactForm addNewContact={addNewContact} initialValue={contact} />
       <Filter value={filter} filterContact={filterContact} />
       <ContactList contacts={filterContacts} deleteContact={deleteContact} />

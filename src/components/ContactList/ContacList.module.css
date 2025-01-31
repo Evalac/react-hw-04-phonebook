@@ -1,0 +1,48 @@
+@import-normalize "normalize/opinionated.css";
+
+.containerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.contactItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contactItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.contactItem p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.buttonDelete {
+  padding: 5px 10px;
+  font-size: 14px;
+  color: white;
+  background-color: #e63946;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buttonDelete:hover {
+  background-color: #d62828;
+}
