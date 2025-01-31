@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
+import { Filter } from './Filter/Filter';
 
 export const App = () => {
   const contacts = [
@@ -15,31 +16,33 @@ export const App = () => {
     return savedContacts ? JSON.parse(savedContacts) : contacts;
   });
 
+  const [filter, setFilter] = useState('');
+
   useEffect(() => {
     localStorage.setItem('contact', JSON.stringify(contact));
   }, [contact]);
-
-  // useEffect(() => {
-  //   const localStorageContacts = JSON.parse(localStorage.getItem('contact'));
-  //   if (localStorageContacts) {
-  //     console.log(localStorageContacts);
-
-  //     setConatct(localStorageContacts);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem('contact', JSON.stringify(contact));
-  // }, [contact]);
 
   const addNewContact = newContact => {
     setConatct(prevState => [...prevState, newContact]);
   };
 
+  const deleteContact = id => {
+    setConatct(prevState => prevState.filter(contact => contact.id !== id));
+  };
+
+  const filterContact = e => {
+    setFilter(e.target.value);
+  };
+
+  const filterContacts = contact.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
     <div>
-      <ContactForm addNewContact={addNewContact} />
-      <ContactList contacts={contact} />
+      <ContactForm addNewContact={addNewContact} initialValue={contact} />
+      <Filter value={filter} filterContact={filterContact} />
+      <ContactList contacts={filterContacts} deleteContact={deleteContact} />
     </div>
   );
 };

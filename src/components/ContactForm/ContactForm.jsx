@@ -1,23 +1,29 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 
-function ContactForm({ addNewContact }) {
+function ContactForm({ addNewContact, initialValue }) {
   const [contactName, setConatctName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
 
-  return (
-    <form
-      onSubmit={e => {
-        e.preventDefault();
+  const submitForm = e => {
+    e.preventDefault();
 
-        const newContact = {
-          id: nanoid(),
-          name: contactName,
-          number: contactNumber,
-        };
-        addNewContact(newContact);
-      }}
-    >
+    const result = initialValue.some(({ name }) => name === contactName);
+    if (result) {
+      alert('Такий контакт вже є');
+      return;
+    }
+
+    const newContact = {
+      id: nanoid(),
+      name: contactName,
+      number: contactNumber,
+    };
+    addNewContact(newContact);
+  };
+
+  return (
+    <form onSubmit={submitForm}>
       <label htmlFor="name">
         Name
         <input
